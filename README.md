@@ -8,19 +8,19 @@ Usage
 -----
 
 Two directives are required to prevent the browsers from showing the
-_"remember password"_ dialog: `<submit>` and `<password>`
+_"remember password"_ dialog: `<ngl-form-submit>` and `<ngl-form-password>`
 
 ```html
-<div submit="login(user)">
+<div ngl-form-submit="login(user)">
   <input type="text" ng-model="user.name" />
-  <input password ng-model="user.password" />
+  <input ngl-form-password ng-model="user.password" />
 </div>
 ```
 
-`<submit>` adds key and click handlers to its child inputs. Its a
+`<ngl-form-submit>` adds key and click handlers to its child inputs. Its a
 replacement to the `<form>` element
 
-`<password>` changes the type of the input to password once the input has
+`<ngl-form-password>` changes the type of the input to password once the input has
 focus, so the browser cannot detect it as password. Its a replacement to
 `type="password"` attribute
 

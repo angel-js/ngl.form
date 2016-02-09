@@ -1,32 +1,32 @@
-angular.module('form', [])
+angular.module('ngl.form', [])
 
-.constant('KEY', {
+.constant('NGL_KEYCODE', {
     ENTER: 13,
     SPACE: 32
 })
 
-.directive('submit', function ($parse, KEY) {
+.directive('nglFormSubmit', function ($parse, NGL_KEYCODE) {
     'use strict';
 
     var link = function (scope, element, attrs) {
         var submit = function () {
             scope.$apply(function () {
-                $parse(attrs.submit)(scope);
+                $parse(attrs.nglFormSubmit)(scope);
             });
          };
 
         // Pressing enter in a text field
         angular.element(element[0].querySelectorAll('input,textarea'))
         .on('keypress', function (event) {
-            if (event.keyCode !== KEY.ENTER) { return; }
+            if (event.keyCode !== NGL_KEYCODE.ENTER) { return; }
             submit();
         });
 
         // Pressing space or enter in an input or button with type=submit
         angular.element(element[0].querySelectorAll('[type="submit"]'))
         .on('keypress', function (event) {
-            if (event.keyCode !== KEY.SPACE &&
-                event.keyCode !== KEY.ENTER) { return; }
+            if (event.keyCode !== NGL_KEYCODE.SPACE &&
+                event.keyCode !== NGL_KEYCODE.ENTER) { return; }
             submit();
         });
 
@@ -40,7 +40,7 @@ angular.module('form', [])
     };
 })
 
-.directive('password', function () {
+.directive('nglFormPassword', function () {
     'use strict';
 
     var link = function (scope, element, attrs) {
