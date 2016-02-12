@@ -21,16 +21,14 @@ angular.module('ngl.form', [])
     // Pressing enter in a text field
     angular.element(element[0].querySelectorAll('input,textarea'))
     .on('keyup', function (event) {
-      if (event.keyCode !== NGL_KEYCODE.ENTER) { return; }
-      submit();
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
     });
 
     // Pressing space or enter in an input or button with type=submit
     angular.element(element[0].querySelectorAll('[type="submit"]'))
     .on('keyup', function (event) {
-      if (event.keyCode !== NGL_KEYCODE.SPACE &&
-          event.keyCode !== NGL_KEYCODE.ENTER) { return; }
-        submit();
+      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
     });
 
     // Clicking a button or input with type=submit
