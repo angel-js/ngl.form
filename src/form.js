@@ -36,6 +36,7 @@ angular.module('ngl.form', [])
     };
 
     return {
+        scope: true,
         link: link
     };
 })
@@ -50,6 +51,7 @@ angular.module('ngl.form', [])
     };
 
     return {
+        scope: true,
         link: link
     };
 });
