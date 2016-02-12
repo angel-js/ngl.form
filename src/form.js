@@ -17,14 +17,14 @@ angular.module('ngl.form', [])
 
         // Pressing enter in a text field
         angular.element(element[0].querySelectorAll('input,textarea'))
-        .on('keypress', function (event) {
+        .on('keyup', function (event) {
             if (event.keyCode !== NGL_KEYCODE.ENTER) { return; }
             submit();
         });
 
         // Pressing space or enter in an input or button with type=submit
         angular.element(element[0].querySelectorAll('[type="submit"]'))
-        .on('keypress', function (event) {
+        .on('keyup', function (event) {
             if (event.keyCode !== NGL_KEYCODE.SPACE &&
                 event.keyCode !== NGL_KEYCODE.ENTER) { return; }
             submit();
