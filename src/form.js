@@ -11,7 +11,7 @@ angular.module('ngl.form', [])
   var $parse = $injector.get('$parse');
   var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
 
-  var compile = function ($scope, $element, $attrs) {
+  var controller = function ($scope, $element, $attrs) {
     var submit = function () {
       $scope.$apply(function () {
         $parse($attrs.nglFormSubmit)($scope);
@@ -38,14 +38,14 @@ angular.module('ngl.form', [])
 
   return {
     scope: true,
-    compile: compile
+    controller: controller
   };
 })
 
 .directive('nglFormPassword', function () {
   'use strict';
 
-  var compile = function ($element, $attrs) {
+  var controller = function ($element, $attrs) {
     $element.on('focus', function () {
       $attrs.$set('type', 'password');
     });
@@ -53,6 +53,6 @@ angular.module('ngl.form', [])
 
   return {
     scope: true,
-    compile: compile
+    controller: controller
   };
 });
