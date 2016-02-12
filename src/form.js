@@ -1,57 +1,57 @@
 angular.module('ngl.form', [])
 
 .constant('NGL_KEYCODE', {
-    ENTER: 13,
-    SPACE: 32
+  ENTER: 13,
+  SPACE: 32
 })
 
 .directive('nglFormSubmit', function ($parse, NGL_KEYCODE) {
-    'use strict';
+  'use strict';
 
-    var link = function (scope, element, attrs) {
-        var submit = function () {
-            scope.$apply(function () {
-                $parse(attrs.nglFormSubmit)(scope);
-            });
-         };
-
-        // Pressing enter in a text field
-        angular.element(element[0].querySelectorAll('input,textarea'))
-        .on('keyup', function (event) {
-            if (event.keyCode !== NGL_KEYCODE.ENTER) { return; }
-            submit();
-        });
-
-        // Pressing space or enter in an input or button with type=submit
-        angular.element(element[0].querySelectorAll('[type="submit"]'))
-        .on('keyup', function (event) {
-            if (event.keyCode !== NGL_KEYCODE.SPACE &&
-                event.keyCode !== NGL_KEYCODE.ENTER) { return; }
-            submit();
-        });
-
-        // Clicking a button or input with type=submit
-        angular.element(element[0].querySelectorAll('[type="submit"]'))
-        .on('click', submit);
+  var link = function (scope, element, attrs) {
+    var submit = function () {
+      scope.$apply(function () {
+        $parse(attrs.nglFormSubmit)(scope);
+      });
     };
 
-    return {
-        scope: true,
-        link: link
-    };
+    // Pressing enter in a text field
+    angular.element(element[0].querySelectorAll('input,textarea'))
+    .on('keyup', function (event) {
+      if (event.keyCode !== NGL_KEYCODE.ENTER) { return; }
+      submit();
+    });
+
+    // Pressing space or enter in an input or button with type=submit
+    angular.element(element[0].querySelectorAll('[type="submit"]'))
+    .on('keyup', function (event) {
+      if (event.keyCode !== NGL_KEYCODE.SPACE &&
+          event.keyCode !== NGL_KEYCODE.ENTER) { return; }
+        submit();
+    });
+
+    // Clicking a button or input with type=submit
+    angular.element(element[0].querySelectorAll('[type="submit"]'))
+    .on('click', submit);
+  };
+
+  return {
+    scope: true,
+    link: link
+  };
 })
 
 .directive('nglFormPassword', function () {
-    'use strict';
+  'use strict';
 
-    var link = function (scope, element, attrs) {
-        element.on('focus', function () {
-            attrs.$set('type', 'password');
-        });
-    };
+  var link = function (scope, element, attrs) {
+    element.on('focus', function () {
+      attrs.$set('type', 'password');
+    });
+  };
 
-    return {
-        scope: true,
-        link: link
-    };
+  return {
+    scope: true,
+    link: link
+  };
 });
