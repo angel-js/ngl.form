@@ -5,11 +5,11 @@ angular.module('ngl.form', [])
   SPACE: 32
 })
 
-.directive('nglFormSubmit', function ($inject) {
+.directive('nglFormSubmit', function ($injector) {
   'use strict';
 
-  var $parse = $inject.get('$parse');
-  var NGL_KEYCODE = $inject.get('NGL_KEYCODE');
+  var $parse = $injector.get('$parse');
+  var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
 
   var link = function (scope, element, attrs) {
     var submit = function () {
