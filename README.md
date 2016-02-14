@@ -1,5 +1,7 @@
-Form directives
-===============
+ngl.form
+========
+
+Angular 1.x directives to avoid "remember password" dialog
 
 Mimic `<form>` behavior wihtout using the `<form>` tag, allowing to create forms
 without native autocompletion support
