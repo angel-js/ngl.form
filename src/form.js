@@ -1,4 +1,6 @@
-angular.module('ngl.form', [])
+angular.module('ngl.form', [
+  'ngl.gator'
+])
 
 .constant('NGL_KEYCODE', {
   ENTER: 13,
