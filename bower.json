@@ -1,9 +1,10 @@
 {
   "name": "ngl.form",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "license": "MIT",
   "main": "./src/form.js",
   "dependencies": {
-    "angular": "1.*"
+    "angular": "1.*",
+    "ngl.gator": "^1.2.0"
   }
 }

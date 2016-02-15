@@ -6,6 +6,19 @@ Angular 1.x directives to avoid "remember password" dialog
 Mimic `<form>` behavior wihtout using the `<form>` tag, allowing to create forms
 without native autocompletion support
 
+Install
+-------
+
+    bower install ngl.form
+
+Include the sources
+
+```html
+<script src="bower_components/gator/gator.js"></script>
+<script src="bower_components/ngl.gator/src/gator.js"></script>
+<script src="bower_components/ngl.form/src/form.js"></script>
+```
+
 Usage
 -----
 
