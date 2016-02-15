@@ -20,15 +20,17 @@ angular.module('ngl.form', [
       $scope.$apply(function () {
         submitExpr($scope);
       });
+
+      return false; // gator preventDefault and stopPropagation
     };
 
     $element.gator('keyup', 'input,textarea', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
     $element.gator('keyup', '[type="submit"]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(); }
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.SPACE) { return submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
     $element.gator('click', '[type="submit"]', submit);
