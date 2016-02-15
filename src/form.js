@@ -24,13 +24,16 @@ angular.module('ngl.form', [
       return false; // gator preventDefault and stopPropagation
     };
 
-    $element.gator('keyup', 'input,textarea', function (event) {
+    $element.gator('keydown', 'input,textarea', function (event) {
+      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
+    });
+
+    $element.gator('keydown', '[type="submit"]', function (event) {
       if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
     $element.gator('keyup', '[type="submit"]', function (event) {
       if (event.keyCode === NGL_KEYCODE.SPACE) { return submit(); }
-      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
     $element.gator('click', '[type="submit"]', submit);
