@@ -63,7 +63,7 @@ How to reproduce "remember password" dialog
 ### Chrome
 
  1. Fill the fields and click on the "login" button
- 2. If the page has not changed its url, refresh the page
+ 2. Refresh the page
 
 Events causing form submission
 ------------------------------
