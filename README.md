@@ -19,6 +19,14 @@ Include the sources
 <script src="bower_components/ngl.form/src/form.js"></script>
 ```
 
+Add `ngl.form` to your app dependencies
+
+```js
+angular.module('app', [
+  'ngl.form'
+]);
+```
+
 Usage
 -----
 
@@ -44,23 +52,21 @@ focus, so the browser cannot detect it as password. Its a replacement to
 This directive creates bindings on its children so you need to preserve them
 in the DOM. To control element visibility use `ng-show` instead
 
-Events causing form submission
-------------------------------
+### Events causing form submission
 
   * Pressing enter in a text field
   * Pressing space or enter in an input or button with `type=submit`
   * Clicking a button or input with `type=submit`
 
-How to reproduce autocompletion dialog
---------------------------------------
+### How to reproduce autocompletion dialog
 
 Proof of concept at: <http://plnkr.co/edit/tSE2wq?p=preview>
 
-### Firefox
+**Firefox:**
 
  1. Fill the fields and click on the "login" button
 
-### Chrome
+**Chrome:**
 
  1. Fill the fields and click on the "login" button
  2. If the page has not changed its url, refresh the page
