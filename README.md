@@ -43,33 +43,34 @@ _"remember password"_ dialog: `<ngl-form-submit>` and `<ngl-form-password>`
 `<ngl-form-submit>` adds key and click handlers to its child inputs. Its a
 replacement to the `<form>` element
 
-`<ngl-form-password>` changes the type of the input to password once the input has
-focus, so the browser cannot detect it as password. Its a replacement to
+`<ngl-form-password>` changes the type of the input to password once the input
+has focus, so the browser cannot detect it as password. Its a replacement to
 `type="password"` attribute
 
-### Avoid `ng-if` in fields
+Proof of concept
+----------------
 
-This directive creates bindings on its children so you need to preserve them
-in the DOM. To control element visibility use `ng-show` instead
+  * <http://plnkr.co/edit/tSE2wq?p=preview>
+  * <http://github.com/pfraces-poc/ngl.form.examples>
 
-### Events causing form submission
+How to reproduce "remember password" dialog
+-------------------------------------------
+
+### Firefox
+
+ 1. Fill the fields and click on the "login" button
+
+### Chrome
+
+ 1. Fill the fields and click on the "login" button
+ 2. If the page has not changed its url, refresh the page
+
+Events causing form submission
+------------------------------
 
   * Pressing enter in a text field
   * Pressing space or enter in an input or button with `type=submit`
   * Clicking a button or input with `type=submit`
-
-### How to reproduce autocompletion dialog
-
-Proof of concept at: <http://plnkr.co/edit/tSE2wq?p=preview>
-
-**Firefox:**
-
- 1. Fill the fields and click on the "login" button
-
-**Chrome:**
-
- 1. Fill the fields and click on the "login" button
- 2. If the page has not changed its url, refresh the page
 
 References
 ----------
@@ -77,4 +78,3 @@ References
   * <http://stackoverflow.com/questions/32369/disable-browser-save-password-functionality>
   * <https://github.com/angular/angular.js/issues/2513#issuecomment-29454622>
   * <https://github.com/mcpDESIGNS/ngForm-handle-Enter-Keypress/blob/master/ngFormFixes.directive.js>
-  * <https://css-tricks.com/snippets/javascript/javascript-keycodes/>
