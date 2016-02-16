@@ -30,22 +30,24 @@ angular.module('app', [
 Usage
 -----
 
-Two directives are required to prevent the browsers from showing the
-_"remember password"_ dialog: `<ngl-form-submit>` and `<ngl-form-password>`
-
 ```html
-<div ngl-form-submit="login(user)">
+<div ngl-form="login(user)">
   <input type="text" ng-model="user.name" />
   <input ngl-form-password ng-model="user.password" />
+  <button ngl-form-submit>Submit</button>
 </div>
 ```
 
-`<ngl-form-submit>` adds key and click handlers to its child inputs. Its a
-replacement to the `<form>` element
+`<ngl-form="callback()">` is a replacement to the `<form>` element.
+Evals `expr` when the proper events are emitted from its child inputs
 
-`<ngl-form-password>` changes the type of the input to password once the input
-has focus, so the browser cannot detect it as password. Its a replacement to
-`type="password"` attribute
+`<ngl-form-password>` is a replacement to `type="password"` attribute.
+It changes the type of the input to password once the input gets focus,
+preventing the browser to detect it as a password input
+
+`<ngl-form-submit>` attribute is a replacement to `type="submit"`.
+It is not a registered directive: `<ngl-form>` will listen to events from
+elements having `ngl-form-submit` attribute
 
 Proof of concept
 ----------------

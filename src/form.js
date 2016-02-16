@@ -7,7 +7,7 @@ angular.module('ngl.form', [
   SPACE: 32
 })
 
-.directive('nglFormSubmit', function ($injector) {
+.directive('nglForm', function ($injector) {
   'use strict';
 
   var $parse = $injector.get('$parse');
@@ -28,15 +28,15 @@ angular.module('ngl.form', [
       if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
-    $element.gator('keydown', '[type="submit"]', function (event) {
+    $element.gator('keydown', '[ngl-form-submit]', function (event) {
       if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
-    $element.gator('keyup', '[type="submit"]', function (event) {
+    $element.gator('keyup', '[ngl-form-submit]', function (event) {
       if (event.keyCode === NGL_KEYCODE.SPACE) { return submit(); }
     });
 
-    $element.gator('click', '[type="submit"]', submit);
+    $element.gator('click', '[ngl-form-submit]', submit);
   };
 
   return {
