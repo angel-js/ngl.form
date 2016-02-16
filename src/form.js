@@ -24,7 +24,7 @@ angular.module('ngl.form', [
       return false; // gator preventDefault and stopPropagation
     };
 
-    $element.gator('keydown', 'input,textarea', function (event) {
+    $element.gator('keydown', 'input', function (event) {
       if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
     });
 
