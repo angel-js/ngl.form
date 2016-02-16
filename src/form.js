@@ -26,15 +26,15 @@ angular.module('ngl.form', [
     };
 
     $element.gator('keydown', 'input', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
     });
 
     $element.gator('keydown', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
     });
 
     $element.gator('keyup', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(); }
+      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(event); }
     });
 
     $element.gator('click', '[ngl-form-submit]', submit);
