@@ -14,7 +14,7 @@ angular.module('ngl.form', [
   var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
 
   var controller = function ($scope, $element, $attrs) {
-    var submitExpr = $parse($attrs.nglFormSubmit);
+    var submitExpr = $parse($attrs.nglForm);
 
     var submit = function () {
       $scope.$apply(function () {
