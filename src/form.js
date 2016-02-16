@@ -16,24 +16,25 @@ angular.module('ngl.form', [
   var controller = function ($scope, $element, $attrs) {
     var submitExpr = $parse($attrs.nglForm);
 
-    var submit = function () {
+    var submit = function (event) {
       $scope.$apply(function () {
         submitExpr($scope);
       });
 
-      return false; // gator preventDefault and stopPropagation
+      event.preventDefault();
+      event.stopPropagation();
     };
 
     $element.gator('keydown', 'input', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
     });
 
     $element.gator('keydown', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { return submit(); }
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(); }
     });
 
     $element.gator('keyup', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.SPACE) { return submit(); }
+      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(); }
     });
 
     $element.gator('click', '[ngl-form-submit]', submit);
