@@ -1,6 +1,4 @@
-angular.module('ngl.form', [
-  'ngl.gator'
-])
+angular.module('ngl.form', [])
 
 .constant('NGL_KEYCODE', {
   ENTER: 13,
@@ -11,33 +9,22 @@ angular.module('ngl.form', [
   'use strict';
 
   var $parse = $injector.get('$parse');
-  var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
 
   var controller = function ($scope, $element, $attrs) {
-    var submitExpr = $parse($attrs.nglForm);
+    var expr = $parse($attrs.nglForm);
 
     var submit = function (event) {
-      $scope.$apply(function () {
-        submitExpr($scope);
-      });
-
       event.preventDefault();
       event.stopPropagation();
+
+      $scope.$apply(function () {
+        expr($scope);
+      });
     };
 
-    $element.gator('keydown', 'input', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
-    });
-
-    $element.gator('keydown', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
-    });
-
-    $element.gator('keyup', '[ngl-form-submit]', function (event) {
-      if (event.keyCode === NGL_KEYCODE.SPACE) { submit(event); }
-    });
-
-    $element.gator('click', '[ngl-form-submit]', submit);
+    return {
+      submit: submit
+    };
   };
 
   return {
@@ -46,17 +33,46 @@ angular.module('ngl.form', [
   };
 })
 
-.directive('nglFormPassword', function () {
+.directive('nglFormInput', function ($injector) {
   'use strict';
 
+  var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
+
   var controller = function ($element, $attrs) {
-    $element.on('focus', function () {
-      $attrs.$set('type', 'password');
+    var nglFormController = $element.controller('nglForm');
+    var submit = nglFormController.submit;
+
+    $element.on('keypress', function (event) {
+      if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
     });
+
+    var type = $attrs.nglFormInput || 'text';
+
+    if (type === 'text') {
+      $attrs.$set('type', 'text');
+      return;
+    }
+
+    if (type === 'password') {
+      $element.on('focus', function () {
+        $attrs.$set('type', 'password');
+      });
+
+      return;
+    }
+
+    if (type === 'submit') {
+      $element.on('keyup', function (event) {
+        if (event.keyCode === NGL_KEYCODE.SPACE) { submit(event); }
+      });
+
+      return;
+    }
   };
 
   return {
     scope: true,
+    require: '^nglForm',
     controller: controller
   };
 });

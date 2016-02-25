@@ -14,8 +14,6 @@ Install
 Include the sources
 
 ```html
-<script src="bower_components/gator/gator.js"></script>
-<script src="bower_components/ngl.gator/src/gator.js"></script>
 <script src="bower_components/ngl.form/src/form.js"></script>
 ```
 
@@ -32,43 +30,53 @@ Usage
 
 ```html
 <div ngl-form="login(user)">
-  <input type="text" ng-model="user.name" />
-  <input ngl-form-password ng-model="user.password" />
-  <button ngl-form-submit>Submit</button>
+  <input ngl-form-input ng-model="user.name" />
+  <input ngl-form-input="password" ng-model="user.password" />
+  <input ngl-form-input="submit">Submit</button>
 </div>
 ```
-
-`<ngl-form="callback()">` is a replacement to the `<form>` element.
-Evals `expr` when the proper events are emitted from its child inputs
-
-`<ngl-form-password>` is a replacement to `type="password"` attribute.
-It changes the type of the input to password once the input gets focus,
-preventing the browser to detect it as a password input
-
-`<ngl-form-submit>` attribute is a replacement to `type="submit"`.
-It is not a registered directive: `<ngl-form>` will listen to events from
-elements having `ngl-form-submit` attribute
 
 Proof of concept
 ----------------
 
-  * <http://plnkr.co/edit/tSE2wq?p=preview>
   * <http://github.com/pfraces-poc/ngl.form.examples>
 
-How to reproduce "remember password" dialog
--------------------------------------------
+### How to reproduce "remember password" dialog
 
-### Firefox
+**Firefox:**
 
  1. Fill the fields and click on the "login" button
 
-### Chrome
+**Chrome:**
 
  1. Fill the fields and click on the "login" button
  2. Refresh the page
 
-Events causing form submission
-------------------------------
+API
+---
+
+### `<ngl-form="expr">`
+
+It is a replacement to the `<form>` element.
+
+Its controller exposes a method evaluating `expr` when called
+
+### `<ngl-form-input="type">`
+
+Requires a `<ngl-form>` as ancestor element and uses its exposed controller
+method when the right events are fired from the element depending on `type`
+
+**Available types:**
+
+  * `text` _(default)_ is a replacement to `type="text"`
+
+  * `password` is a replacement to `type="password"`.
+    Sets the `type="password"` attribute once focused preventing the browser to
+    detect it as a password input
+
+  * `"submit"` is a replacement to `type="submit"`.
+
+**Events causing form submission:**
 
   * Pressing enter in a text field
   * Pressing space or enter in an input or button with `type=submit`
