@@ -42,7 +42,7 @@ angular.module('ngl.form', [])
     var nglFormController = $element.controller('nglForm');
     var submit = nglFormController.submit;
 
-    $element.on('keypress', function (event) {
+    $element.on('keydown', function (event) {
       if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
     });
 
@@ -66,6 +66,7 @@ angular.module('ngl.form', [])
         if (event.keyCode === NGL_KEYCODE.SPACE) { submit(event); }
       });
 
+      $element.on('click', submit);
       return;
     }
   };
