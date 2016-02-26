@@ -36,6 +36,7 @@ angular.module('ngl.form', [])
 .directive('nglFormInput', function ($injector) {
   'use strict';
 
+  var $timeout = $injector.get('$timeout');
   var NGL_KEYCODE = $injector.get('NGL_KEYCODE');
 
   var controller = function ($element, $attrs) {
@@ -54,7 +55,7 @@ angular.module('ngl.form', [])
     }
 
     if (type === 'password') {
-      $element.on('focus', function () {
+      $timeout(function () {
         $attrs.$set('type', 'password');
       });
 
