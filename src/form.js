@@ -42,25 +42,16 @@ angular.module('ngl.form', [])
   var controller = function ($element, $attrs) {
     var nglFormController = $element.controller('nglForm');
     var submit = nglFormController.submit;
+    var type = $attrs.nglFormInput || 'text';
+
+    var setType = function () { $attrs.$set('type', type); };
+
+    if (type === 'password') { $timeout(setType); }
+    else { setType(); }
 
     $element.on('keydown', function (event) {
       if (event.keyCode === NGL_KEYCODE.ENTER) { submit(event); }
     });
-
-    var type = $attrs.nglFormInput || 'text';
-
-    if (type === 'text') {
-      $attrs.$set('type', 'text');
-      return;
-    }
-
-    if (type === 'password') {
-      $timeout(function () {
-        $attrs.$set('type', 'password');
-      });
-
-      return;
-    }
 
     if (type === 'submit') {
       $element.on('keyup', function (event) {
@@ -68,7 +59,6 @@ angular.module('ngl.form', [])
       });
 
       $element.on('click', submit);
-      return;
     }
   };
 
